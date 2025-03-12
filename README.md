@@ -5,9 +5,8 @@
 This repository provides the dataset and implementation for our paper:
 
 **"Robustness Evaluation and Bias Mitigation in AVQA: Insights from Datasets and Models"**
+![Static Badge](https://img.shields.io/badge/paper-pdf-red)
 
-**Authors:** Jie Ma, Min Hu, Pinghui Wang, Wangchun Sun, Lingyun Song, Hongbin Pei, Jun Liu, Youtian Du  
-**Preprint:** [arXiv:2404.12020](https://arxiv.org/abs/2404.12020)
 
 ## Abstract
 
