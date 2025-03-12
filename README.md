@@ -1,5 +1,5 @@
 # Robustness Evaluation and Bias Mitigation in AVQA: Insights from Datasets and Models
-This repository provides the dataset and implementation for our paper: **"Robustness Evaluation and Bias Mitigation in AVQA: Insights from Datasets and Models"**. This work is an improved and extended version of our [previously published paper](https://github.com/reml-group/MUSIC-AVQA-R) in NeurIPS 2024.
+This repository provides the dataset and implementation for our paper: **"Robustness Evaluation and Bias Mitigation in AVQA: Insights from Datasets and Models"**. This work is an improved and extended version of our [previously published paper](https://github.com/reml-group/MUSIC-AVQA-R) in NeurIPS 2024. <span style="color:red;">Compared to MUSIC-AVQA-R, we think the head/tail splitting in FortisAVQA is more rational.</span> 
 
 ![Static Badge](https://img.shields.io/badge/python-3.10-blue)
 [![Static Badge](https://img.shields.io/badge/FortisAVQA-pdf-red)](https://openreview.net/pdf?id=twpPD9UMUN)
@@ -26,20 +26,18 @@ We introduce FortisAVQA, the first dataset designed to assess the robustness of 
 [
     {
         "video_id": "00000823",
-        "question_id": 2945,
-        "type": "[\"Audio\", \"Comparative\"]",
+        "question_id": 2945,  // the id of questions
+        "type": "[\"Audio\", \"Comparative\"]",    // [audio task, question type]
         "question_content": "Is the clarinet louder than the acoustic_guitar",
-        "question_deleted": 0,
-        "anser": "yes",
-        "split": "tail",
-        "x": 0.7958979489744872
+        "anser": "yes",  // the answer to questions
+        "split": "tail",  // head or tail split
+        "x": 0.7958979489744872  // k in the Equation (9)
     },
     {
         "video_id": "00000823",
-        "question_id": 2945,
+        "question_id": 2945,  // the id of questions
         "type": "[\"Audio\", \"Comparative\"]",
         "question_content": "When compared to the acoustic_guitar does the clarinet sound louder?",
-        "question_deleted": 0,
         "anser": "yes",
         "split": "tail",
         "x": 0.7958979489744872
