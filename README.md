@@ -2,10 +2,9 @@
 
 ## Overview
 
-This repository provides the dataset and implementation for our paper:
+This repository provides the dataset and implementation for our paper: **"Robustness Evaluation and Bias Mitigation in AVQA: Insights from Datasets and Models"**.
 
-**"Robustness Evaluation and Bias Mitigation in AVQA: Insights from Datasets and Models"**
-
+![Static Badge](https://img.shields.io/badge/python-3.10-blue)
 ![Static Badge](https://img.shields.io/badge/paper-pdf-red)
 
 
