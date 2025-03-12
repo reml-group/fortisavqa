@@ -20,11 +20,6 @@ To address these challenges, we introduce:
   2. Introducing distribution shifts across question splits to enable a refined robustness evaluation across rare, frequent, and overall question distributions.
 - **MAVEN (Multimodal Audio-Visual Epistemic Network)**, a robust generative AVQA model leveraging a multifaceted cycle collaborative debiasing strategy to mitigate bias learning.
 
-## Repository Structure
-
-📂 MUSIC-AVQA-R/ ├── 📂 dataset/ # FortisAVQA dataset and processing scripts ├── 📂 models/ # MAVEN model implementation ├── 📂 scripts/ # Training and evaluation scripts ├── 📂 configs/ # Configuration files for experiments ├── 📜 requirements.txt # Python dependencies ├── 📜 README.md # Documentation └── 📜 LICENSE # License details
-
-
 ## FortisAVQA
 We introduce FortisAVQA, the first dataset designed to assess the robustness of AVQA models. Its construction involves two key processes: rephrasing and splitting. Rephrasing modifies questions from the test set of MUSIC-AVQA to enhance linguistic diversity, thereby mitigating the reliance of models on spurious correlations between key question terms and answers. Splitting entails the automatic and reasonable categorization of questions into frequent (head) and rare (tail) subsets, enabling a more comprehensive evaluation of model
 performance in both in-distribution and out-of-distribution scenarios.
