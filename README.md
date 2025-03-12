@@ -1,4 +1,4 @@
-# Robustness Evaluation and Bias Mitigation in AVQA
+# Robustness Evaluation and Bias Mitigation in AVQA: Insights from Datasets and Models
 This repository provides the dataset and implementation for our paper: **"Robustness Evaluation and Bias Mitigation in AVQA: Insights from Datasets and Models"**. This work is an improved and extended version of our [previously published paper](https://github.com/reml-group/MUSIC-AVQA-R) in NeurIPS 2024.
 
 ![Static Badge](https://img.shields.io/badge/python-3.10-blue)
