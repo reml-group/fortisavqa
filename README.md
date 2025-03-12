@@ -75,7 +75,7 @@ Ensure you have Python 3.8+ installed, then install dependencies via:
 
 ```bash
 pip install -r requirements.txt
-
+```
 Setup
 Clone this repository and navigate to the project directory:
 git clone https://github.com/reml-group/MUSIC-AVQA-R.git
