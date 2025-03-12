@@ -27,20 +27,20 @@ We introduce FortisAVQA, the first dataset designed to assess the robustness of 
     {
         "video_id": "00000823",
         "question_id": 2945,
-        "_comment_question_id": the id of questions,
+        "_comment_question_id": "the id of questions",
 
         "type": "[\"Audio\", \"Comparative\"]",
         "_comment_type":  "[audio task, question type]",
 
         "question_content": "Is the clarinet louder than the acoustic_guitar",
         "anser": "yes",
-        "_comment_anser": the answer to questions,
+        "_comment_anser": "the answer to questions",
 
-        "split": "tail",  # head or tail split
-        "_comment_split": head or tail split
+        "split": "tail", 
+        "_comment_split": "head or tail split",
 
-        "x": 0.7958979489744872
-        "_comment_x": k in the Equation (9) of our paper
+        "x": 0.7958979489744872,
+        "_comment_x": "k in the Equation (9) of our paper"
     },
     {
         "video_id": "00000823",
