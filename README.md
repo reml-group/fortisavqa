@@ -18,10 +18,12 @@ To address these challenges, we introduce:
 - **MAVEN (Multimodal Audio-Visual Epistemic Network)**, a robust generative AVQA model leveraging a multifaceted cycle collaborative debiasing strategy to mitigate bias learning.
 
 ## FortisAVQA
-We introduce FortisAVQA, the first dataset designed to assess the robustness of AVQA models. Its construction involves two key processes: rephrasing and splitting. Rephrasing modifies questions from the test set of MUSIC-AVQA to enhance linguistic diversity, thereby mitigating the reliance of models on spurious correlations between key question terms and answers. Splitting entails the automatic and reasonable categorization of questions into frequent (head) and rare (tail) subsets, enabling a more comprehensive evaluation of model
-performance in both in-distribution and out-of-distribution scenarios.
+We introduce FortisAVQA, the first dataset designed to assess the robustness of AVQA models. Its construction involves two key processes: rephrasing and splitting. Rephrasing modifies questions from the test set of MUSIC-AVQA to enhance linguistic diversity, thereby mitigating the reliance of models on spurious correlations between key question terms and answers. Splitting entails the automatic and reasonable categorization of questions into frequent (head) and rare (tail) subsets, enabling a more comprehensive evaluation of model performance in both in-distribution and out-of-distribution scenarios.
 
-Dataset and preprocessing scripts can be found in the [`dataset/`](./dataset) directory.
+1 数据集原始文件，包含训练集、验证集、测试集的视频、问题；
+2 数据集的问题样例展示；
+3 处理好的音频、视频文件；
+4 利用均匀分布采样出来的FortisAVQA数据集，视频、音频、问题；
 
 ## Model: MAVEN
 
