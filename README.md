@@ -21,7 +21,7 @@ To address these challenges, we introduce:
 We introduce FortisAVQA, the first dataset designed to assess the robustness of AVQA models. Its construction involves two key processes: rephrasing and splitting. Rephrasing modifies questions from the test set of MUSIC-AVQA to enhance linguistic diversity, thereby mitigating the reliance of models on spurious correlations between key question terms and answers. Splitting entails the automatic and reasonable categorization of questions into frequent (head) and rare (tail) subsets, enabling a more comprehensive evaluation of model performance in both in-distribution and out-of-distribution scenarios.
 
 1. You can download the original dataset including videos and questions in [here]().
-2. The question format is shown as follows:
+2. The question annotation is shown as follows:
 ```json
 [
     {
@@ -100,6 +100,7 @@ If you find our dataset or code useful, please cite our work:
   journal={arXiv preprint arXiv:2404.12020},
   year={2024}
 }
+## License
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+- **Code**: This project's code is licensed under the [MIT License](LICENSE).
+- **Dataset**: The dataset provided in this repository is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](DATASET_LICENSE).
