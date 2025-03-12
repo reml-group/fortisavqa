@@ -44,7 +44,7 @@ We introduce FortisAVQA, the first dataset designed to assess the robustness of 
     },
     {
         "video_id": "00000823",
-        "question_id": 2945,  # the id of questions
+        "question_id": 2945,  
         "type": "[\"Audio\", \"Comparative\"]",
         "question_content": "When compared to the acoustic_guitar does the clarinet sound louder?",
         "anser": "yes",
