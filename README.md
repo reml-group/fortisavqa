@@ -53,8 +53,7 @@ We introduce FortisAVQA, the first dataset designed to assess the robustness of 
     }
 ]
 ```
-3. 
-3 处理好的音频、视频文件；
+3. Our proposed method MAVEN supports processing audio, video, and text inputs simultaneously. We have separated the audio and video from the original files. You can download the processed data in [here]().
 4 利用均匀分布采样出来的FortisAVQA数据集，视频、音频、问题；
 
 ## Model: MAVEN
