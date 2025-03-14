@@ -53,9 +53,8 @@ We introduce FortisAVQA, the first dataset designed to assess the robustness of 
     }
 ]
 ```
-3. Our proposed method MAVEN supports processing audio, video, and text inputs simultaneously. We have separated the audio and video from the original files. You can download the processed data in [here]().
-4 利用均匀分布采样出来的FortisAVQA数据集，视频、音频、问题；
-
+3. Our proposed method, MAVEN, is capable of processing audio, video, and text inputs simultaneously. To facilitate this, we have extracted and separated the audio and video components from the original files. The processed data is available for download [here]().
+4. The test split of FortisAVQA consists of 211,572 samples. To manage testing costs efficiently, we applied uniform sampling to create a representative subset specifically for evaluating large models. You can download the test split [here](). The details of this split are shown as follows.
 ## Model: MAVEN
 
 MAVEN is a robust AVQA model that incorporates:
