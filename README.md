@@ -69,7 +69,7 @@ Implementation details are available in the [`models/`](./models) directory.
 
 ### Requirements
 
-Ensure you have Python 3.8+ installed, then install dependencies via:
+Ensure you have Python 3.10 installed and 4+ Tesla A800/100, then install dependencies via:
 
 ```bash
 pip install -r requirements.txt
