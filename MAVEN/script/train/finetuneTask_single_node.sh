@@ -28,7 +28,7 @@ DISTRIBUTED_ARGS="
 export NCCL_TIMEOUT=25200
 MODEL_TYPE=mixtral-8x7b
 OUTPUT_DIR=$1
-OUTPUT_DIR_FT=${OUTPUT_DIR}/llava-s3-finetune_task_lora_wo_complete_20_0.001_0.005_wo_CG
+OUTPUT_DIR_FT=${OUTPUT_DIR}/llava-s3-finetune_task_lora
 mkdir -p ${OUTPUT_DIR_FT}
 
 torchrun $DISTRIBUTED_ARGS vita/train/train.py \
@@ -48,7 +48,6 @@ torchrun $DISTRIBUTED_ARGS vita/train/train.py \
     --bf16 True \
     --output_dir ${OUTPUT_DIR_FT} \
     --num_train_epochs 2 \
-    --max_steps 600 \
     --per_device_train_batch_size 2 \
     --per_device_eval_batch_size 4 \
     --gradient_accumulation_steps 2 \
