@@ -1,4 +1,0 @@
-
-CondaError: Run 'conda init' before 'conda activate'
-
-bash: script/train/finetuneTask_single_node.sh: No such file or directory
