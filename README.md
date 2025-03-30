@@ -118,9 +118,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
 ```
 
 ### Results
-
+- Experimental results(%) on the MUSIC-AVQA test split:
 ![Experimental results(%) on the MUSIC-AVQA test split.](./imgs/MUSIC-AVQA-results.png)
-
+- Experimental results(%) on thr FortisAVQA test split:
 ![Experimental results(%) on thr FortisAVQA test split.](./imgs/Fortisavqa-results.png)
 
 ### Citation
