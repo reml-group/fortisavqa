@@ -20,7 +20,7 @@ To address these challenges, we introduce:
 ## FortisAVQA
 We introduce FortisAVQA, the first dataset designed to assess the robustness of AVQA models. Its construction involves two key processes: rephrasing and splitting. Rephrasing modifies questions from the test set of MUSIC-AVQA to enhance linguistic diversity, thereby mitigating the reliance of models on spurious correlations between key question terms and answers. Splitting entails the automatic and reasonable categorization of questions into frequent (head) and rare (tail) subsets, enabling a more comprehensive evaluation of model performance in both in-distribution and out-of-distribution scenarios.
 
-1. You can download the original dataset including videos and questions in [here]().
+1. You can download the original dataset including videos and questions in [Videos](https://drive.google.com/drive/folders/1WAryZZE0srLIZG8VHl22uZ3tpbGHtsrQ) and [Questions]().
 2. The question annotation is shown as follows:
 ```json
 [
@@ -53,8 +53,8 @@ We introduce FortisAVQA, the first dataset designed to assess the robustness of 
     }
 ]
 ```
-3. Our proposed method, MAVEN, is capable of processing audio, video, and text inputs simultaneously. To facilitate this, we have extracted and separated the audio and video components from the original files. The processed data is available for download [here](). You can also process the original data by using the code located in MAVEN/data_tools/xxx.py.
-4. The test split of FortisAVQA consists of 211,572 samples. To manage testing costs efficiently, we applied uniform sampling on the MUSIC-AVQA and FortisAVQA to create a representative subset specifically for evaluating large models. You can download the test splits of the mentioned two datasets [here](). The details of this split are shown as follows. ![The statistics of FortisAVQA and MUSIC-AVQA](./imgs/data-stas.png).
+3. Our proposed method, MAVEN, is capable of processing audio, video, and text inputs simultaneously. To facilitate this, we have extracted and separated the audio and video components from the original files. The processed data is available for download [here](). You can also process the original data by using the code located in `./MAVEN/data_tools/extract_audio_multiprocessing.py` .
+4. The test split of FortisAVQA consists of 211,572 samples. To manage testing costs efficiently, we applied uniform sampling on the MUSIC-AVQA and FortisAVQA to create a representative subset specifically for evaluating large models. You can download the test splits of the mentioned two datasets [here](https://pan.baidu.com/s/1hCGZmf9z3cWy0EA7mb1Hvg)(password: AVQA). The details of this split are shown as follows. ![The statistics of FortisAVQA and MUSIC-AVQA](./imgs/data-stas.png).
 ## Model: MAVEN
 
 MAVEN is a robust AVQA model that incorporates:
@@ -63,7 +63,7 @@ MAVEN is a robust AVQA model that incorporates:
 - **Plug-and-play compatibility** with baseline models across AVQA datasets.
 - **State-of-the-art performance** on FortisAVQA, improving previous results by **9.32%**.
 
-Implementation details are available in the [`models/`](./models) directory.
+Implementation details are available in the [`MAVEN/`](./MAVEN) directory.
 
 ## Installation
 
@@ -74,30 +74,68 @@ Ensure you have Python 3.10 installed and 4+ Tesla A800/100, then install depend
 ```bash
 pip install -r requirements.txt
 ```
-Setup
+### Setup
+
 Clone this repository and navigate to the project directory:
-git clone https://github.com/reml-group/MUSIC-AVQA-R.git
-cd MUSIC-AVQA-R
 
-Training and Evaluation
-Training MAVEN
-Run the following command to train MAVEN:
-python scripts/evaluate.py --dataset FortisAVQA
+```bash
+git clone https://github.com/reml-group/fortisavqa.git
+cd MAVEN
+```
 
+### Traning
 
-Evaluating MAVEN on FortisAVQA
-python scripts/evaluate.py --dataset FortisAVQA
+Execute the following commands to start the training process:
 
-Results
+```bash
+export PYTHONPATH=./
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+OUTPUT_DIR=/home/majie/code/MAVEN/
+bash script/train/finetuneTask_single_node.sh ${OUTPUT_DIR}
+```
 
-Citation
+You can modify the `MCCD` training configuration [here](./MAVEN/vita/constants.py): 
+
+```python
+MCCD = {"flag": True,
+        "lambda_multifaceted": 0.001,
+        "lambda_cycle": 0.005,
+        "multifaceted":{"lang": True, "audio": True, "video": True},
+        "cycle": False
+        }
+```
+
+### Evaluation
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
+       --model_base	/home/majie/modelhub/VITA_ckpt/ \
+       --test_json	/home/majie/gaozhitao/avqa/datahub/FortisAVQA/FortisAVQA-test-1%.json  \
+       --output_path /home/majie/code/MAVEN/test_output/output.json \
+       --model_path /home/majie/code/MAVEN/llava-s3-finetune_task_lora/checkpoint-3000 \
+       --video_dir /home/majie/datahub/FortisAVQA/video \
+       --audio_dir /home/majie/datahub/FortisAVQA/audio
+```
+
+### Results
+
+![Experimental results(%) on the MUSIC-AVQA test split.](./imgs/MUSIC-AVQA-results.png)
+
+![Experimental results(%) on thr FortisAVQA test split.](./imgs/Fortisavqa-results.png)
+
+### Citation
+
 If you find our dataset or code useful, please cite our work:
+
+```
 @article{ma2024look,
   title={Look, Listen, and Answer: Overcoming Biases for Audio-Visual Question Answering},
   author={Ma, Jie and Hu, Min and Wang, Pinghui and Sun, Wangchun and Song, Lingyun and Pei, Hongbin and Liu, Jun and Du, Youtian},
   journal={arXiv preprint arXiv:2404.12020},
   year={2024}
 }
+```
+
 ## License
 
 - **Code**: This project's code is licensed under the [MIT License](LICENSE).
