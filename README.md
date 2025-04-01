@@ -20,9 +20,9 @@ To address these challenges, we introduce:
 ## FortisAVQA
 We introduce FortisAVQA, the first dataset designed to assess the robustness of AVQA models. Its construction involves two key processes: rephrasing and splitting. Rephrasing modifies questions from the test set of MUSIC-AVQA to enhance linguistic diversity, thereby mitigating the reliance of models on spurious correlations between key question terms and answers. Splitting entails the automatic and reasonable categorization of questions into frequent (head) and rare (tail) subsets, enabling a more comprehensive evaluation of model performance in both in-distribution and out-of-distribution scenarios.
 
-1. You can download the original dataset, including videos and questions in [Videos](https://drive.google.com/drive/folders/1WAryZZE0srLIZG8VHl22uZ3tpbGHtsrQ) and [Questions](). These are provided by the repository of MUSIC-AVQA.
+1. You can download the original dataset, including videos and questions in [Videos](https://drive.google.com/drive/folders/1WAryZZE0srLIZG8VHl22uZ3tpbGHtsrQ) and [Questions](https://pan.baidu.com/s/1lJ1cPl4tnbgfIPS-UxbVZA)(password: AVQA). These are provided by the repository of MUSIC-AVQA.
 2. Our proposed method, MAVEN, is capable of processing audio, video, and text inputs simultaneously. To facilitate this, we have extracted and separated the audio and video components from the original files. The processed data is available for download [here](). You can also process the original data by using the code located in `./MAVEN/data_tools/extract_audio_multiprocessing.py` .
-3. The question annotation in our proposed dataset (FortisAVQA) is shown as follows. You can download the questions [here]().
+3. The question annotation in our proposed dataset (FortisAVQA) is shown as follows. You can download the questions [here](https://pan.baidu.com/s/1mrLeoCrLn2AbdVxkCQ3hjg)(password: AVQA).
 ```json
 [
     {
@@ -77,7 +77,7 @@ cd MAVEN
 ```
 
 ### Traning
-1. Process the data according to the following format. If you do not perform instruction tuning, you may not need to execute this step. The code is located in `xxx/xxx/xx.py`. You can download the [processed question](xx) here.
+1. Process the data according to the following format. If you do not perform instruction tuning, you may not need to execute this step. The code is located in `MAVEN/data_tools/preprocess_trainset.py`. You can download the [processed question](https://pan.baidu.com/s/1DRxxsQHc85YF20PuQSxr8Q) here(password: AVQA).
 ```json
 [
     {
