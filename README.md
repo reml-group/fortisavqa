@@ -131,5 +131,5 @@ If you find our dataset or code useful, please cite our work:
 
 ## License
 
-- **Code**: This project's code is licensed under the [MIT License](LICENSE).
-- **Dataset**: The dataset provided in this repository is licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](DATASET_LICENSE).
+- **Code**: This project's code is licensed under the [MIT License](MIT_LICENSE).
+- **Dataset**: The dataset provided in this repository is licensed under the [GNU General Public License v3.0](GNU_LICENSE).
