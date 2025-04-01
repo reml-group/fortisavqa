@@ -77,6 +77,29 @@ cd MAVEN
 ```
 
 ### Traning
+1. Process the data according to the following format. If you do not perform instruction tuning, you may not need to execute this step. The code is located in `xxx/xxx/xx.py`. You can download the [processed question](xx) here.
+```json
+[
+    {
+        "set": "music_avqa",
+        "id": "00006427_1607",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<video>\n<audio>\nHow many instruments are sounding in the video?"
+            },
+            {
+                "from": "gpt",
+                "value": "There are two instruments sounding in the video."
+            }
+        ],
+        "video": "video/00006427.mp4",
+        "audio": [
+            "00006427.wav"
+        ]
+    }
+]
+```
 
 Execute the following commands to start the training process:
 
