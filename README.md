@@ -113,7 +113,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
 ### Results
 - Experimental results(%) on the MUSIC-AVQA test split:
 ![Experimental results(%) on the MUSIC-AVQA test split.](./imgs/MUSIC-AVQA-results.png)
-- Experimental results(%) on thr FortisAVQA test split:
+- Experimental results(%) on the FortisAVQA test split:
 ![Experimental results(%) on thr FortisAVQA test split.](./imgs/Fortisavqa-results.png)
 
 ### Citation
@@ -121,10 +121,10 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
 If you find our dataset or code useful, please cite our work:
 
 ```
-@article{ma2024look,
+@inproceedings{malook,
   title={Look, Listen, and Answer: Overcoming Biases for Audio-Visual Question Answering},
   author={Ma, Jie and Hu, Min and Wang, Pinghui and Sun, Wangchun and Song, Lingyun and Pei, Hongbin and Liu, Jun and Du, Youtian},
-  journal={arXiv preprint arXiv:2404.12020},
+  booktitle={NeurIPS},
   year={2024}
 }
 ```
