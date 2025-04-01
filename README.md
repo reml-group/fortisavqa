@@ -55,15 +55,8 @@ We introduce FortisAVQA, the first dataset designed to assess the robustness of 
 ]
 ```
 4. The test split of FortisAVQA consists of 211,572 samples. To manage testing costs efficiently, we applied uniform sampling on the MUSIC-AVQA and FortisAVQA to create a representative subset specifically for evaluating large models. You can download the test splits of the mentioned two datasets [here](https://pan.baidu.com/s/1hCGZmf9z3cWy0EA7mb1Hvg) (password: AVQA). The details of this split are shown as follows. ![The statistics of FortisAVQA and MUSIC-AVQA](./imgs/data-stas.png).
-## Model: MAVEN
-
-MAVEN is a robust AVQA model that incorporates:
-
-- **Multifaceted cycle collaborative debiasing**, which counteracts dataset biases.
-- **Plug-and-play compatibility** with baseline models across AVQA datasets.
-- **State-of-the-art performance** on FortisAVQA, improving previous results by **9.32%**.
-
-Implementation details are available in the [`MAVEN/`](./MAVEN) directory.
+## MAVEN
+MAVEN first extracts unimodal embeddings using modality-specific encoders. It then fine-tunes a parameter-sharing generative model to learn multimodal fusion while capturing three unimodal biases, guided by four distinct prompts. Finally, a collaborative debiasing strategy is applied to amplify the disparity between the fusion logit and the bias logit. Simultaneously, a cycle-guidance mechanism is introduced to maintain consistency among bias logit. 
 
 ## Installation
 
