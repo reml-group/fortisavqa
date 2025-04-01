@@ -101,7 +101,7 @@ cd MAVEN
 ]
 ```
 
-Execute the following commands to start the training process:
+2. Execute the following commands to start the training process:
 
 ```bash
 export PYTHONPATH=./
@@ -110,7 +110,7 @@ OUTPUT_DIR=/home/majie/code/MAVEN/
 bash script/train/finetuneTask_single_node.sh ${OUTPUT_DIR}
 ```
 
-You can modify the `MCCD` training configuration [here](./MAVEN/vita/constants.py): 
+3. You can modify the `MCCD` training configuration [here](./MAVEN/vita/constants.py): 
 
 ```python
 MCCD = {"flag": True,
