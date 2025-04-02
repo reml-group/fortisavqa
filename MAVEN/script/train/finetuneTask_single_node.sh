@@ -33,14 +33,14 @@ mkdir -p ${OUTPUT_DIR_FT}
 
 torchrun $DISTRIBUTED_ARGS vita/train/train.py \
     --deepspeed ./script/deepspeed/zero3.json \
-    --model_name_or_path /nfsdat/home/jmaslm/modelhub/VITA_ckpt \
+    --model_name_or_path /path/to/your/VITA_ckpt \
     --model_type $MODEL_TYPE \
     --version mixtral_two \
     --dataset_use Pretrain_video \
-    --vision_tower /nfsdat/home/jmaslm/modelhub/InternViT-300M-448px \
+    --vision_tower /path/to/your/InternViT-300M-448px \
     --mm_projector_type mlp2x_gelu \
     --tune_mm_mlp_adapter True\
-    --audio_encoder /nfsdat/home/jmaslm/modelhub/audio-encoder-2wh_zh_en_audioset_Mixtral-8x7B_New-base-tunning \
+    --audio_encoder /path/to/your/audio-encoder-2wh_zh_en_audioset_Mixtral-8x7B_New-base-tunning \
     --freeze_audio_encoder True \
     --freeze_audio_encoder_adapter False \
     --image_aspect_ratio square \
