@@ -104,26 +104,28 @@ cd MAVEN
 2. You should add its key-value pair to the `FolderDict` in `MAVEN/vita/config/dataset_config.py` to retrieve the video folder for data loading.
 
    ```bash
-   AudioFolder = "/nfsdat/home/jmaslm/datahub/FortisAVQA"
+   AudioFolder = "/path/to/your/datahub/FortisAVQA"
    FolderDict = {
-       "music_avqa": "/nfsdat/home/jmaslm/datahub/FortisAVQA"
+       "music_avqa": "/path/to/your/datahub/FortisAVQA"
    }
-   ShareGPT4V = {"chat_path": "/nfsdat/home/jmaslm/datahub/FortisAVQA/fine_tune_vitar.json"}
+   ShareGPT4V = {"chat_path": "/path/to/your/FortisAVQA/fine_tune_vitar.json"}
    ```
 
-3. Replace the model paths in `MAVEN/script/train/finetuneTask_single_node.sh`.
+3. Download the required weights: (1) [VITA checkpoint](https://huggingface.co/VITA-MLLM/VITA), (2) [InternViT-300M-448px](https://huggingface.co/OpenGVLab/InternViT-300M-448px), and (3) [VITA's pretrained audio encoder](https://huggingface.co/VITA-MLLM/VITA)
+
+4. Replace the model paths in `MAVEN/script/train/finetuneTask_single_node.sh`.
 
    ```sh
        ...
-       --model_name_or_path /nfsdat/home/jmaslm/modelhub/VITA_ckpt \
+       --model_name_or_path /path/to/your/VITA_ckpt \
        ...
-       --vision_tower /nfsdat/home/jmaslm/modelhub/InternViT-300M-448px \
+       --vision_tower /path/to/your/InternViT-300M-448px \
        ...
-       --audio_encoder /nfsdat/home/jmaslm/modelhub/audio-encoder-2wh_zh_en_audioset_Mixtral-8x7B_New-base-tunning \
+       --audio_encoder /path/to/your/audio-encoder-2wh_zh_en_audioset_Mixtral-8x7B_New-base-tunning \
        ...
    ```
 
-4. Execute the following commands to start the training process:
+5. Execute the following commands to start the training process:
 
    ```bash
    export PYTHONPATH=./
@@ -132,7 +134,7 @@ cd MAVEN
    bash script/train/finetuneTask_single_node.sh ${OUTPUT_DIR}
    ```
 
-5. You can modify the `MCCD` training configuration in `MAVEN/vita/constants.py`: 
+6. You can modify the `MCCD` training configuration in `MAVEN/vita/constants.py`: 
 
    ```python
    MCCD = {"flag": True,
@@ -145,16 +147,18 @@ cd MAVEN
 
 ### Evaluation
 
-1. Batch Testing with JSON Input: 
+1. We have released the LoRA fine-tuned model weights and related configurations. You can download them from [here]() to reproduce our experimental results.
+
+2. Batch Testing with JSON Input: 
 
    ```bash
    CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
-          --model_base	/home/majie/modelhub/VITA_ckpt/ \
-          --test_json	/home/majie/gaozhitao/avqa/datahub/FortisAVQA/FortisAVQA-test-1%.json  \
-          --output_path /home/majie/code/MAVEN/test_output/output.json \
-          --model_path /home/majie/code/MAVEN/llava-s3-finetune_task_lora/checkpoint-3000 \
-          --video_dir /home/majie/datahub/FortisAVQA/video \
-          --audio_dir /home/majie/datahub/FortisAVQA/audio
+          --model_base		/path/to/your/VITA_ckpt/ \
+          --test_json		/path/to/your/FortisAVQA-test.json  \
+          --output_path	/path/to/your/output.json \
+          --model_path 	/path/to/your/lora_checkpoint \
+          --video_dir 		/path/to/your/FortisAVQA/video \
+          --audio_dir 		/path/to/your/FortisAVQA/audio
    ```
 
    **Parameters**
@@ -166,14 +170,14 @@ cd MAVEN
    - `--video_dir`: Directory containing the video files.
    - `--audio_dir`: Directory containing the audio files.
 
-2. Single Question Inference: 
+3. Single Question Inference: 
 
    ```bash
        CUDA_VISIBLE_DEVICES=0,1,2,3 python video_audio_demo.py \
-          --model_base	/home/majie/modelhub/VITA_ckpt/ \
-          --model_path /home/majie/code/VITA/llava-s3-finetune_task_lora/checkpoint-3000 \
-          --video_path /home/majie/datahub/MUSIC_AVQA_R/video/00000046.mp4 \
-          --audio_path /home/majie/datahub/MUSIC_AVQA_R/audio/00000046.wav \
+          --model_base	/path/to/your/VITA_ckpt/ \
+          --model_path /path/to/your/lora_checkpoint \
+          --video_path /path/to/your/FortisAVQA/video/00000046.mp4 \
+          --audio_path /path/to/your/FortisAVQA/audio/00000046.wav \
           --question "How many instruments are sounding in the video?"
    ```
 
@@ -184,8 +188,6 @@ cd MAVEN
    - `--video_path`: Path to the video file to be tested.
    - `--audio_path`: Path to the audio file corresponding to the video.
    - `--question`: The question that the model should answer based on the video and audio.
-
-
 
 ### Results
 
