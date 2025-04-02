@@ -2,7 +2,7 @@
 This repository provides the dataset and implementation for our paper: **"FortisAVQA and MAVEN: a Benchmark Dataset and Debiasing Framework for Robust Multimodal Reasoning"**. This work is an improved and extended version of our [previously published paper](https://github.com/reml-group/MUSIC-AVQA-R) in NeurIPS 2024. *Compared to MUSIC-AVQA-R, we think the head/tail splitting in FortisAVQA is more rational.*
 
 ![Static Badge](https://img.shields.io/badge/python-3.10-blue)
-[![Static Badge](https://img.shields.io/badge/FortisAVQA-pdf-red)](https://openreview.net/pdf?id=twpPD9UMUN)
+[![Static Badge](https://img.shields.io/badge/FortisAVQA-pdf-red)](https://arxiv.org/abs/2504.00487)
 [![Static Badge](https://img.shields.io/badge/MUSIC_AVQA_R-pdf-red)](https://openreview.net/pdf?id=twpPD9UMUN)
 
 
@@ -78,62 +78,117 @@ cd MAVEN
 
 ### Traning
 1. Process the data according to the following format. If you do not perform instruction tuning, you may not need to execute this step. The code is located in `MAVEN/data_tools/preprocess_trainset.py`. You can download the [processed question](https://pan.baidu.com/s/1DRxxsQHc85YF20PuQSxr8Q) here(password: AVQA).
-```json
-[
-    {
-        "set": "music_avqa",
-        "id": "00006427_1607",
-        "conversations": [
-            {
-                "from": "human",
-                "value": "<video>\n<audio>\nHow many instruments are sounding in the video?"
-            },
-            {
-                "from": "gpt",
-                "value": "There are two instruments sounding in the video."
-            }
-        ],
-        "video": "video/00006427.mp4",
-        "audio": [
-            "00006427.wav"
-        ]
-    }
-]
-```
 
-2. Execute the following commands to start the training process:
+   ```bash
+   [
+       {
+           "set": "music_avqa",
+           "id": "00006427_1607",
+           "conversations": [
+               {
+                   "from": "human",
+                   "value": "<video>\n<audio>\nHow many instruments are sounding in the video?"
+               },
+               {
+                   "from": "gpt",
+                   "value": "There are two instruments sounding in the video."
+               }
+           ],
+           "video": "video/00006427.mp4",
+           "audio": [
+               "00006427.wav"
+           ]
+       }
+   ]
+   ```
+2. You should add its key-value pair to the `FolderDict` in `MAVEN/vita/config/dataset_config.py` to retrieve the video folder for data loading.
 
-```bash
-export PYTHONPATH=./
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-OUTPUT_DIR=/home/majie/code/MAVEN/
-bash script/train/finetuneTask_single_node.sh ${OUTPUT_DIR}
-```
+   ```bash
+   AudioFolder = "/nfsdat/home/jmaslm/datahub/FortisAVQA"
+   FolderDict = {
+       "music_avqa": "/nfsdat/home/jmaslm/datahub/FortisAVQA"
+   }
+   ShareGPT4V = {"chat_path": "/nfsdat/home/jmaslm/datahub/FortisAVQA/fine_tune_vitar.json"}
+   ```
 
-3. You can modify the `MCCD` training configuration [here](./MAVEN/vita/constants.py): 
+3. Replace the model paths in `MAVEN/script/train/finetuneTask_single_node.sh`.
 
-```python
-MCCD = {"flag": True,
-        "lambda_multifaceted": 0.001,
-        "lambda_cycle": 0.005,
-        "multifaceted":{"lang": True, "audio": True, "video": True},
-        "cycle": False
-        }
-```
+   ```sh
+       ...
+      	--model_name_or_path /nfsdat/home/jmaslm/modelhub/VITA_ckpt \
+       ...
+       --vision_tower /nfsdat/home/jmaslm/modelhub/InternViT-300M-448px \
+       ...
+       --audio_encoder /nfsdat/home/jmaslm/modelhub/audio-encoder-2wh_zh_en_audioset_Mixtral-8x7B_New-base-tunning \
+       ...
+   ```
+
+4. Execute the following commands to start the training process:
+
+   ```bash
+   export PYTHONPATH=./
+   export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+   OUTPUT_DIR=/home/majie/code/MAVEN/
+   bash script/train/finetuneTask_single_node.sh ${OUTPUT_DIR}
+   ```
+
+5. You can modify the `MCCD` training configuration in `MAVEN/vita/constants.py`: 
+
+   ```python
+   MCCD = {"flag": True,
+           "lambda_multifaceted": 0.001,
+           "lambda_cycle": 0.005,
+           "multifaceted":{"lang": True, "audio": True, "video": True},
+           "cycle": False
+           }
+   ```
 
 ### Evaluation
 
-```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
-       --model_base	/home/majie/modelhub/VITA_ckpt/ \
-       --test_json	/home/majie/gaozhitao/avqa/datahub/FortisAVQA/FortisAVQA-test-1%.json  \
-       --output_path /home/majie/code/MAVEN/test_output/output.json \
-       --model_path /home/majie/code/MAVEN/llava-s3-finetune_task_lora/checkpoint-3000 \
-       --video_dir /home/majie/datahub/FortisAVQA/video \
-       --audio_dir /home/majie/datahub/FortisAVQA/audio
-```
+1. Batch Testing with JSON Input: 
+
+   ```bash
+   CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
+          --model_base	/home/majie/modelhub/VITA_ckpt/ \
+          --test_json	/home/majie/gaozhitao/avqa/datahub/FortisAVQA/FortisAVQA-test-1%.json  \
+          --output_path /home/majie/code/MAVEN/test_output/output.json \
+          --model_path /home/majie/code/MAVEN/llava-s3-finetune_task_lora/checkpoint-3000 \
+          --video_dir /home/majie/datahub/FortisAVQA/video \
+          --audio_dir /home/majie/datahub/FortisAVQA/audio
+   ```
+
+   **Parameters**
+
+   - `--model_base`: Path to the pre-trained model base checkpoint.
+   - `--test_json`: Path to the JSON file containing the test data.
+   - `--output_path`: Path where the results will be saved.
+   - `--model_path`: Path to the fine-tuned model checkpoint.
+   - `--video_dir`: Directory containing the video files.
+   - `--audio_dir`: Directory containing the audio files.
+
+2. Single Question Inference: 
+
+   ```bash
+       CUDA_VISIBLE_DEVICES=0,1,2,3 python video_audio_demo.py \
+          --model_base	/home/majie/modelhub/VITA_ckpt/ \
+          --model_path /home/majie/code/VITA/llava-s3-finetune_task_lora/checkpoint-3000 \
+          --video_path /home/majie/datahub/MUSIC_AVQA_R/video/00000046.mp4 \
+          --audio_path /home/majie/datahub/MUSIC_AVQA_R/audio/00000046.wav \
+          --question "How many instruments are sounding in the video?"
+   ```
+
+   **Parameters**
+
+   - `--model_base`: Path to the pre-trained model base checkpoint.
+   - `--model_path`: Path to the fine-tuned model checkpoint.
+   - `--video_path`: Path to the video file to be tested.
+   - `--audio_path`: Path to the audio file corresponding to the video.
+   - `--question`: The question that the model should answer based on the video and audio.
+
+
 
 ### Results
+
 - Experimental results(%) on the MUSIC-AVQA test split:
 ![Experimental results(%) on the MUSIC-AVQA test split.](./imgs/MUSIC-AVQA-results.png)
 - Experimental results(%) on the FortisAVQA test split:
@@ -144,6 +199,13 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
 If you find our dataset or code useful, please cite our work:
 
 ```
+@article{ma2025fortisavqa,
+  title={FortisAVQA and MAVEN: a Benchmark Dataset and Debiasing Framework for Robust Multimodal Reasoning},
+  author={Ma, Jie and Gao, Zhitao and Chai, Qi and Liu, Jun and Wang, Pinghui and Tao, Jing and Su, Zhou},
+  journal={arXiv preprint arXiv:2504.00487},
+  year={2025}
+}
+
 @inproceedings{malook,
   title={Look, Listen, and Answer: Overcoming Biases for Audio-Visual Question Answering},
   author={Ma, Jie and Hu, Min and Wang, Pinghui and Sun, Wangchun and Song, Lingyun and Pei, Hongbin and Liu, Jun and Du, Youtian},

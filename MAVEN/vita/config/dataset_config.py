@@ -4,5 +4,5 @@ FolderDict = {
     "music_avqa": "/nfsdat/home/jmaslm/datahub/FortisAVQA"
 }
 #### NaturalCap
-ShareGPT4V = {"chat_path": "/nfsdat/home/jmaslm/datahub/FortisAVQA/fine_tune_vitar_20.json"}
+ShareGPT4V = {"chat_path": "/nfsdat/home/jmaslm/datahub/FortisAVQA/fine_tune_vitar.json"}
 
