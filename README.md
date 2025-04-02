@@ -153,12 +153,12 @@ cd MAVEN
 
    ```bash
    CUDA_VISIBLE_DEVICES=0,1,2,3 python avqa_test.py \
-          --model_base		/path/to/your/VITA_ckpt/ \
-          --test_json		/path/to/your/FortisAVQA-test.json  \
+          --model_base	/path/to/your/VITA_ckpt/ \
+          --test_json	/path/to/your/FortisAVQA-test.json  \
           --output_path	/path/to/your/output.json \
-          --model_path 	/path/to/your/lora_checkpoint \
-          --video_dir 		/path/to/your/FortisAVQA/video \
-          --audio_dir 		/path/to/your/FortisAVQA/audio
+          --model_path	/path/to/your/lora_checkpoint \
+          --video_dir	/path/to/your/FortisAVQA/video \
+          --audio_dir	/path/to/your/FortisAVQA/audio
    ```
 
    **Parameters**
@@ -173,12 +173,12 @@ cd MAVEN
 3. Single Question Inference: 
 
    ```bash
-       CUDA_VISIBLE_DEVICES=0,1,2,3 python video_audio_demo.py \
-          --model_base	/path/to/your/VITA_ckpt/ \
-          --model_path /path/to/your/lora_checkpoint \
-          --video_path /path/to/your/FortisAVQA/video/00000046.mp4 \
-          --audio_path /path/to/your/FortisAVQA/audio/00000046.wav \
-          --question "How many instruments are sounding in the video?"
+   CUDA_VISIBLE_DEVICES=0,1,2,3 python video_audio_demo.py \
+      --model_base	/path/to/your/VITA_ckpt/ \
+      --model_path /path/to/your/lora_checkpoint \
+      --video_path /path/to/your/FortisAVQA/video/00000046.mp4 \
+      --audio_path /path/to/your/FortisAVQA/audio/00000046.wav \
+      --question "How many instruments are sounding in the video?"
    ```
 
    **Parameters**
