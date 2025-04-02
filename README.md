@@ -130,7 +130,7 @@ cd MAVEN
    ```bash
    export PYTHONPATH=./
    export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-   OUTPUT_DIR=/home/majie/code/MAVEN/
+   OUTPUT_DIR=/path/to/your/OUTPUT_DIR
    bash script/train/finetuneTask_single_node.sh ${OUTPUT_DIR}
    ```
 
