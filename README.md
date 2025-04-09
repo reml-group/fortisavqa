@@ -1,7 +1,7 @@
 # FortisAVQA and MAVEN: a Benchmark Dataset and Debiasing Framework for Robust Multimodal Reasoning
 This repository provides the dataset and implementation for our paper: **"FortisAVQA and MAVEN: a Benchmark Dataset and Debiasing Framework for Robust Multimodal Reasoning"**. This work is an improved and extended version of our [previously published paper](https://github.com/reml-group/MUSIC-AVQA-R) in NeurIPS 2024. *Compared to MUSIC-AVQA-R, we think the head/tail splitting in FortisAVQA is more rational.*
 
-![Static Badge](https://img.shields.io/badge/python-3.10-blue)[![Static Badge](https://img.shields.io/badge/FortisAVQA-pdf-red)](https://arxiv.org/abs/2504.00487)[![Static Badge](https://img.shields.io/badge/MAVEN-Model-yellow)](https://huggingface.co/reml-group/MAVEN)[![Static Badge](https://img.shields.io/badge/FortisAVQA-Dataset-yellow)](https://huggingface.co/datasets/reml-group/FortisAVQA)[![Static Badge](https://img.shields.io/badge/MUSIC_AVQA_R-pdf-red)](https://openreview.net/pdf?id=twpPD9UMUN)
+![Static Badge](https://img.shields.io/badge/python-3.10-blue) [![Static Badge](https://img.shields.io/badge/FortisAVQA-pdf-red)](https://arxiv.org/abs/2504.00487) [![Static Badge](https://img.shields.io/badge/MAVEN-Model-yellow)](https://huggingface.co/reml-group/MAVEN) [![Static Badge](https://img.shields.io/badge/FortisAVQA-Dataset-yellow)](https://huggingface.co/datasets/reml-group/FortisAVQA) [![Static Badge](https://img.shields.io/badge/MUSIC_AVQA_R-pdf-red)](https://openreview.net/pdf?id=twpPD9UMUN)
 
 
 ## Overview
